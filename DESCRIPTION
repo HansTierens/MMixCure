@@ -1,11 +1,17 @@
 Package: MMixCure
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Fit a Multilevel Mixture Cure with Correlated Random Effects in Incidence and Latency
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author@R: person(given = "Hans",
+                 family= "Tierens",
+                 role=c("aut","cre"),
+                 email="hans.tierens@hotmail.com",
+                 comment=c("ORCID = "0000-0001-8278-3499"))
+Maintainer: Hans Tierens <hans.tierens@uni.lu>
+Description: This package extends the smcure-package on CRAN to fit Semi-Parametric (Cox Proportional Hazards) 
+             Mixture Cure Models with Bivariate Random Effects (on both the incidence and the latency part). These random effects
+             are allowed to be correlated.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+Imports: arm, coxme, lme4, nloptr, smcure, survival
