@@ -12,7 +12,7 @@
 
 simsomdata<-function(i=1,n,ng,coeffic,REvcov){
   set.seed(i)
-  k = 2
+  k = 2.5
   pcure = 0.20
   pcens = 0.25
 
