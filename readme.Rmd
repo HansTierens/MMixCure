@@ -1,8 +1,7 @@
 ---
-title: "README"
 output: 
   md_document:
-    variant:markdown_github
+    variant: markdown_github
 ---
 
 
@@ -30,15 +29,13 @@ The **REsmcure** package provides an extension to the CRAN-package [smcure](http
 ```{r}
 devtools::install_github('HansTierens/MMixCure',dep=T)
 library(MMixCure)
-library(survival)
-library(smcure)
 ```
 
 ### Simulate some data
 
 ```{r simdata, results='asis'}
 i=1
-n=100
+n=1000
 ng=10
 coefficients<-list(gamma0 = c(0,.40,-.30,-.30,.25),  beta0 = c(0,.45,.35,-.25,-.15))
 revcovmat<-list(varcure=1,  varfrail=1,  corr=-.8)

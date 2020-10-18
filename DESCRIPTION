@@ -16,3 +16,4 @@ Encoding: UTF-8
 LazyData: true
 Imports: arm, coxme, lme4, nloptr, smcure, survival
 Depends: arm, coxme, lme4, nloptr, smcure, survival
+RoxygenNote: 7.1.1
