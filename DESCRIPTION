@@ -11,7 +11,7 @@ Maintainer: Hans Tierens <hans.tierens@uni.lu>
 Description: This package extends the smcure-package on CRAN to fit Semi-Parametric (Cox Proportional Hazards) 
              Mixture Cure Models with Bivariate Random Effects (on both the incidence and the latency part). These random effects
              are allowed to be correlated.
-License: What license is it under?
+License: GPL-3.0-or-later
 Encoding: UTF-8
 LazyData: true
 Imports: arm, coxme, lme4, nloptr, smcure, survival
