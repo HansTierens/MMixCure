@@ -26,7 +26,7 @@ The **REsmcure** package provides an extension to the CRAN-package [smcure](http
 
 ## How to use the code
 
-```{r}
+```{r load, message=FALSE}
 #devtools::install_github('HansTierens/MMixCure',dep=T)
 library(MMixCure)
 ```
@@ -34,7 +34,7 @@ library(MMixCure)
 ### Simulate some data
 
 ```{r simdata, results='asis'}
-i=1234
+i=123456789
 n=1000
 ng=10
 coefficients<-list(gamma0 = c(0,.40,-.30,-.30,.25),  beta0 = c(0,.45,.35,-.25,-.15))
