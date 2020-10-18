@@ -1,0 +1,85 @@
+---
+title: "README"
+output: 
+  md_document:
+    variant:markdown_github
+---
+
+
+## Overview
+
+The **REsmcure** package provides an extension to the CRAN-package [smcure](https://github.com/cran/smcure) to fit Semi-Parametric (Cox Proportional Hazards) Mixture Cure models with Bivariate Gaussian random effects (one both the incidence and the latency part of the model). The code allows for (and estimates) correlation of both random effects. The model estimation is based on a paper by Lai & Yau (2008).  
+
+## Content of the code
+
+- simsomdata is a function that can be used to simulate some survival data with (correlated) random effects.
+
+- REsmsurv extends the smsurv function from the **smcure** package so it takes the presence of random effects into account. This function computes the baseline survival function for given data and (initial) parameter values. *for internal use*
+
+- REem implements the Expectation-Maximization (with Inner and Outer loop) for parameter estimation. The outer loop updates the fixed parameters, the BLUPs for the random effects and the baseline survival function, while the inner loop updates the parameters of the random effects' distribution. *for internal use*
+
+- REsmcure is the wrapper function to estimate a mixture cure survival model with correlated random effects. The function allows different fixed effect models on the incidence (*cureform*) and the latency (*formula*). The random effect identifier is named (variable name as a string) using the RE argument. 
+
+- sebootjack is a post-hoc function to add robust standard errors to the model object. Robust standard errors are obtained using either a parametric bootstrap procedure or a leave-k-out jackknife approach on the given dataset. 
+
+- print.REsmcure is the printing function to obtain formatted model output.
+
+
+## How to use the code
+
+```{r}
+devtools::install_github('HansTierens/MMixCure',dep=T)
+library(MMixCure)
+library(survival)
+library(smcure)
+```
+
+### Simulate some data
+
+```{r simdata, results='asis'}
+i=1
+n=100
+ng=10
+coefficients<-list(gamma0 = c(0,.40,-.30,-.30,.25),  beta0 = c(0,.45,.35,-.25,-.15))
+revcovmat<-list(varcure=1,  varfrail=1,  corr=-.8)
+
+data<-simsomdata(i,n,ng,coefficients,revcovmat)
+knitr::kable(data[1:10,])
+knitr::kable(summary(data))
+
+KMest<-survfit(coxph(Surv(Y,Delta)~1,data))
+plot(KMest,main='Simulated Survival Data',ylab='Survival Prob.',xlab='Time')
+```
+
+### Fit the Model
+
+```{r fitmodel}
+coxfit<-coxph(Surv(Y,Delta)~1+Xs+Xd+Ds+Dd,data=data,ties='breslow')
+summary(coxfit)
+
+frailtyfit<-coxph(Surv(Y,Delta)~1+Xs+Xd+Ds+Dd+frailty.gaussian(grp),data=data,ties='breslow')
+summary(frailtyfit)
+
+spmcfit<-smcure(Surv(Y,Delta)~1+Xs+Xd+Ds+Dd,cureform=~1+Xs+Xd+Ds+Dd,data=data,model='ph',link='logit',Var=TRUE)
+printsmcure(spmcfit)
+
+fit<-REsmcure(Surv(Y,Delta)~1+Xs+Xd+Ds+Dd,cureform=~1+Xs+Xd+Ds+Dd,RE='grp',rho=T, data=data, emmax = 50, eps = 1e-07) 
+print.REsmcure(fit)
+```
+
+
+## Citations and References
+
+- This package builds on the **smcure** package, so please do refer to:
+
+Cai, C., Zou, Y., Peng, Y., & Zhang, J. (2012). smcure: An R-package for estimating semiparametric mixture cure models. *Computer Methods and Programs in Biomedicine, 108*(3): 1255-1260.
+
+- For the implementation of the EM-algorithm, we build on previous work by: 
+
+Lai, X. & Yau, K. K. W. 2008. Long-term survivor model with bivariate random effects: Applications to bone marrow transplant and carcinoma study data. *Statistics in Medicine, 27*(27): 5692-5708.
+
+and 
+
+Lai, X. & Yau, K. K. W. 2009. Multilevel Mixture Cure Models with Random Effects. *Biometrical Journal, 51*(3): 456-466.
+
+Lai, X. & Yau, K. K. W. 2010. Extending the long-term survivor mixture model with random effects for clustered survival data. *Computational Statistics and Data Analysis, 54*(9): 2103-2112.
