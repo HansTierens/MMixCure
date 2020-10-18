@@ -27,14 +27,14 @@ The **REsmcure** package provides an extension to the CRAN-package [smcure](http
 ## How to use the code
 
 ```{r}
-devtools::install_github('HansTierens/MMixCure',dep=T)
+#devtools::install_github('HansTierens/MMixCure',dep=T)
 library(MMixCure)
 ```
 
 ### Simulate some data
 
 ```{r simdata, results='asis'}
-i=1
+i=1234
 n=1000
 ng=10
 coefficients<-list(gamma0 = c(0,.40,-.30,-.30,.25),  beta0 = c(0,.45,.35,-.25,-.15))
@@ -42,7 +42,6 @@ revcovmat<-list(varcure=1,  varfrail=1,  corr=-.8)
 
 data<-simsomdata(i,n,ng,coefficients,revcovmat)
 knitr::kable(data[1:10,])
-knitr::kable(summary(data))
 
 KMest<-survfit(coxph(Surv(Y,Delta)~1,data))
 plot(KMest,main='Simulated Survival Data',ylab='Survival Prob.',xlab='Time')
@@ -58,7 +57,6 @@ frailtyfit<-coxph(Surv(Y,Delta)~1+Xs+Xd+Ds+Dd+frailty.gaussian(grp),data=data,ti
 summary(frailtyfit)
 
 spmcfit<-smcure(Surv(Y,Delta)~1+Xs+Xd+Ds+Dd,cureform=~1+Xs+Xd+Ds+Dd,data=data,model='ph',link='logit',Var=TRUE)
-printsmcure(spmcfit)
 
 fit<-REsmcure(Surv(Y,Delta)~1+Xs+Xd+Ds+Dd,cureform=~1+Xs+Xd+Ds+Dd,RE='grp',rho=T, data=data, emmax = 50, eps = 1e-07) 
 print.REsmcure(fit)

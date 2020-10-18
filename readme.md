@@ -43,25 +43,7 @@ How to use the code
 -------------------
 
 ``` r
-devtools::install_github('HansTierens/MMixCure',dep=T)
-```
-
-    ## Downloading GitHub repo HansTierens/MMixCure@HEAD
-
-    ## 
-    ##          checking for file 'C:\Users\hans.tierens\AppData\Local\Temp\RtmpcxN1dI\remotesee384d7a3645\HansTierens-MMixCure-b7bc8d0/DESCRIPTION' ...  v  checking for file 'C:\Users\hans.tierens\AppData\Local\Temp\RtmpcxN1dI\remotesee384d7a3645\HansTierens-MMixCure-b7bc8d0/DESCRIPTION' (557ms)
-    ##       -  preparing 'MMixCure':
-    ##    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   v  checking DESCRIPTION meta-information
-    ##       -  checking for LF line-endings in source and make files and shell scripts
-    ##   -  checking for empty or unneeded directories
-    ##       -  building 'MMixCure_0.1.0.tar.gz'
-    ##      
-    ## 
-
-    ## Installing package into 'C:/Users/hans.tierens/Documents/R/win-library/4.0'
-    ## (as 'lib' is unspecified)
-
-``` r
+#devtools::install_github('HansTierens/MMixCure',dep=T)
 library(MMixCure)
 ```
 
@@ -98,7 +80,7 @@ library(MMixCure)
 ### Simulate some data
 
 ``` r
-i=1
+i=1234
 n=1000
 ng=10
 coefficients<-list(gamma0 = c(0,.40,-.30,-.30,.25),  beta0 = c(0,.45,.35,-.25,-.15))
@@ -110,107 +92,16 @@ knitr::kable(data[1:10,])
 
 |          Y|  Delta|          Xs|          Xd|   Ds|   Dd|  grp|
 |----------:|------:|-----------:|-----------:|----:|----:|----:|
-|  0.2776793|      1|   0.8685774|   2.0591151|    1|    1|   10|
-|  1.3678816|      1|  -1.0780345|  -0.0961369|    0|    1|    6|
-|  0.4591765|      0|  -1.2223320|  -1.1254907|    1|    0|    4|
-|  1.0618977|      0|  -0.7114447|   0.0502006|    0|    1|    4|
-|  3.2618346|      0|  -1.4240317|  -0.1836796|    1|    0|   10|
-|  1.2679387|      1|  -1.6693444|   0.2374040|    0|    0|    9|
-|  0.1752351|      1|   1.3792361|  -0.5707300|    0|    0|    7|
-|  0.6885131|      1|  -0.9196746|   0.6788652|    1|    1|    6|
-|  0.2191299|      1|  -0.5044900|  -1.4653455|    1|    0|    9|
-|  1.6844035|      1|  -1.1347318|  -1.1376878|    1|    1|    8|
-
-``` r
-knitr::kable(summary(data))
-```
-
-<table>
-<colgroup>
-<col style="width: 2%" />
-<col style="width: 15%" />
-<col style="width: 12%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 12%" />
-<col style="width: 11%" />
-<col style="width: 13%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: left;">Y</th>
-<th style="text-align: left;">Delta</th>
-<th style="text-align: left;">Xs</th>
-<th style="text-align: left;">Xd</th>
-<th style="text-align: left;">Ds</th>
-<th style="text-align: left;">Dd</th>
-<th style="text-align: left;">grp</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Min. : 0.05813</td>
-<td style="text-align: left;">Min. :0.000</td>
-<td style="text-align: left;">Min. :-3.23639</td>
-<td style="text-align: left;">Min. :-3.04536</td>
-<td style="text-align: left;">Min. :0.000</td>
-<td style="text-align: left;">Min. :0.0</td>
-<td style="text-align: left;">Min. : 1.000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">1st Qu.: 0.80589</td>
-<td style="text-align: left;">1st Qu.:0.000</td>
-<td style="text-align: left;">1st Qu.:-0.73986</td>
-<td style="text-align: left;">1st Qu.:-0.60703</td>
-<td style="text-align: left;">1st Qu.:0.000</td>
-<td style="text-align: left;">1st Qu.:0.0</td>
-<td style="text-align: left;">1st Qu.: 3.000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Median : 1.38872</td>
-<td style="text-align: left;">Median :0.000</td>
-<td style="text-align: left;">Median :-0.02242</td>
-<td style="text-align: left;">Median : 0.05012</td>
-<td style="text-align: left;">Median :0.000</td>
-<td style="text-align: left;">Median :0.5</td>
-<td style="text-align: left;">Median : 6.000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Mean : 1.97544</td>
-<td style="text-align: left;">Mean :0.486</td>
-<td style="text-align: left;">Mean :-0.02956</td>
-<td style="text-align: left;">Mean : 0.05570</td>
-<td style="text-align: left;">Mean :0.488</td>
-<td style="text-align: left;">Mean :0.5</td>
-<td style="text-align: left;">Mean : 5.643</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">3rd Qu.: 2.57744</td>
-<td style="text-align: left;">3rd Qu.:1.000</td>
-<td style="text-align: left;">3rd Qu.: 0.70423</td>
-<td style="text-align: left;">3rd Qu.: 0.75665</td>
-<td style="text-align: left;">3rd Qu.:1.000</td>
-<td style="text-align: left;">3rd Qu.:1.0</td>
-<td style="text-align: left;">3rd Qu.: 8.000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Max. :13.04814</td>
-<td style="text-align: left;">Max. :1.000</td>
-<td style="text-align: left;">Max. : 2.96174</td>
-<td style="text-align: left;">Max. : 3.03903</td>
-<td style="text-align: left;">Max. :1.000</td>
-<td style="text-align: left;">Max. :1.0</td>
-<td style="text-align: left;">Max. :10.000</td>
-</tr>
-</tbody>
-</table>
+|  4.2651448|      0|  -0.5682069|  -0.7173020|    1|    0|    8|
+|  1.7315386|      0|  -0.9269759|   0.2813380|    1|    1|    4|
+|  1.2387607|      1|  -1.1357352|   0.0072819|    0|    1|    3|
+|  1.0238482|      1|   0.9139623|  -1.7297002|    1|    0|    7|
+|  1.5460203|      1|  -0.9860628|  -1.8434736|    0|    1|    9|
+|  1.0152995|      0|   0.6674854|   0.6012030|    0|    1|    3|
+|  0.6170677|      1|   1.4065955|  -2.3179376|    0|    1|    6|
+|  1.3747303|      0|   1.1577790|  -0.3803121|    1|    0|    4|
+|  5.5544436|      0|  -0.1387532|   1.6551649|    1|    1|    8|
+|  0.4493318|      1|  -0.5393219|  -1.6628550|    1|    0|   10|
 
 ``` r
 KMest<-survfit(coxph(Surv(Y,Delta)~1,data))
@@ -230,26 +121,26 @@ summary(coxfit)
     ## coxph(formula = Surv(Y, Delta) ~ 1 + Xs + Xd + Ds + Dd, data = data, 
     ##     ties = "breslow")
     ## 
-    ##   n= 1000, number of events= 486 
+    ##   n= 1000, number of events= 487 
     ## 
     ##        coef exp(coef) se(coef)      z Pr(>|z|)    
-    ## Xs  0.40004   1.49188  0.04597  8.702  < 2e-16 ***
-    ## Xd  0.00425   1.00426  0.04416  0.096    0.923    
-    ## Ds -0.40327   0.66813  0.09184 -4.391 1.13e-05 ***
-    ## Dd  0.05369   1.05516  0.09080  0.591    0.554    
+    ## Xs  0.38974   1.47660  0.04796  8.127 4.41e-16 ***
+    ## Xd -0.12856   0.87936  0.04452 -2.887  0.00388 ** 
+    ## Ds -0.12512   0.88239  0.09114 -1.373  0.16980    
+    ## Dd  0.17463   1.19080  0.09105  1.918  0.05511 .  
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
     ##    exp(coef) exp(-coef) lower .95 upper .95
-    ## Xs    1.4919     0.6703    1.3633    1.6325
-    ## Xd    1.0043     0.9958    0.9210    1.0950
-    ## Ds    0.6681     1.4967    0.5581    0.7999
-    ## Dd    1.0552     0.9477    0.8831    1.2607
+    ## Xs    1.4766     0.6772    1.3441    1.6221
+    ## Xd    0.8794     1.1372    0.8059    0.9595
+    ## Ds    0.8824     1.1333    0.7380    1.0550
+    ## Dd    1.1908     0.8398    0.9962    1.4234
     ## 
-    ## Concordance= 0.64  (se = 0.013 )
-    ## Likelihood ratio test= 95.33  on 4 df,   p=<2e-16
-    ## Wald test            = 95.31  on 4 df,   p=<2e-16
-    ## Score (logrank) test = 95.48  on 4 df,   p=<2e-16
+    ## Concordance= 0.621  (se = 0.013 )
+    ## Likelihood ratio test= 79.88  on 4 df,   p=<2e-16
+    ## Wald test            = 78.59  on 4 df,   p=3e-16
+    ## Score (logrank) test = 78.83  on 4 df,   p=3e-16
 
 ``` r
 frailtyfit<-coxph(Surv(Y,Delta)~1+Xs+Xd+Ds+Dd+frailty.gaussian(grp),data=data,ties='breslow')
@@ -260,26 +151,26 @@ summary(frailtyfit)
     ## coxph(formula = Surv(Y, Delta) ~ 1 + Xs + Xd + Ds + Dd + frailty.gaussian(grp), 
     ##     data = data, ties = "breslow")
     ## 
-    ##   n= 1000, number of events= 486 
+    ##   n= 1000, number of events= 487 
     ## 
     ##                       coef    se(coef) se2     Chisq DF   p      
-    ## Xs                     0.4294 0.04705  0.04700 83.29 1.00 7.1e-20
-    ## Xd                     0.0143 0.04443  0.04438  0.10 1.00 7.5e-01
-    ## Ds                    -0.3856 0.09283  0.09270 17.25 1.00 3.3e-05
-    ## Dd                     0.0692 0.09121  0.09116  0.58 1.00 4.5e-01
-    ## frailty.gaussian(grp)                          63.98 8.66 1.6e-10
+    ## Xs                     0.4193 0.04823  0.04816 75.56 1.00 3.5e-18
+    ## Xd                    -0.1596 0.04552  0.04548 12.29 1.00 4.6e-04
+    ## Ds                    -0.1392 0.09146  0.09142  2.32 1.00 1.3e-01
+    ## Dd                     0.1494 0.09151  0.09147  2.66 1.00 1.0e-01
+    ## frailty.gaussian(grp)                          66.61 8.75 5.3e-11
     ## 
     ##    exp(coef) exp(-coef) lower .95 upper .95
-    ## Xs    1.5363     0.6509    1.4009    1.6847
-    ## Xd    1.0144     0.9858    0.9298    1.1067
-    ## Ds    0.6801     1.4705    0.5669    0.8158
-    ## Dd    1.0716     0.9331    0.8962    1.2814
+    ## Xs    1.5209     0.6575    1.3837    1.6716
+    ## Xd    0.8525     1.1730    0.7798    0.9321
+    ## Ds    0.8701     1.1493    0.7273    1.0409
+    ## Dd    1.1611     0.8613    0.9704    1.3892
     ## 
-    ## Iterations: 5 outer, 18 Newton-Raphson
-    ##      Variance of random effect= 0.1736209 
+    ## Iterations: 5 outer, 19 Newton-Raphson
+    ##      Variance of random effect= 0.1908845 
     ## Degrees of freedom for terms= 1.0 1.0 1.0 1.0 8.7 
-    ## Concordance= 0.669  (se = 0.669 )
-    ## Likelihood ratio test= 173.8  on 12.66 df,   p=<2e-16
+    ## Concordance= 0.663  (se = 0.663 )
+    ## Likelihood ratio test= 164.2  on 12.74 df,   p=<2e-16
 
 ``` r
 spmcfit<-smcure(Surv(Y,Delta)~1+Xs+Xd+Ds+Dd,cureform=~1+Xs+Xd+Ds+Dd,data=data,model='ph',link='logit',Var=TRUE)
@@ -292,45 +183,20 @@ spmcfit<-smcure(Surv(Y,Delta)~1+Xs+Xd+Ds+Dd,cureform=~1+Xs+Xd+Ds+Dd,data=data,mo
     ##     Var = TRUE)
     ## 
     ## Cure probability model:
-    ##               Estimate  Std.Error   Z value     Pr(>|Z|)
-    ## (Intercept)  0.3978187 0.12933041  3.075987 2.098067e-03
-    ## Xs           0.4441501 0.07353542  6.039947 1.541649e-09
-    ## Xd          -0.1800797 0.06819397 -2.640698 8.273534e-03
-    ## Ds          -0.4646626 0.16775771 -2.769843 5.608325e-03
-    ## Dd           0.1566690 0.13840869  1.131931 2.576636e-01
+    ##               Estimate  Std.Error    Z value     Pr(>|Z|)
+    ## (Intercept)  0.1202928 0.10060440  1.1957012 2.318132e-01
+    ## Xs           0.4336159 0.08453090  5.1296734 2.902453e-07
+    ## Xd          -0.3534922 0.07526626 -4.6965557 2.645851e-06
+    ## Ds          -0.1255649 0.15000875 -0.8370503 4.025643e-01
+    ## Dd           0.3457475 0.14784144  2.3386375 1.935420e-02
     ## 
     ## 
     ## Failure time distribution model:
-    ##        Estimate  Std.Error     Z value     Pr(>|Z|)
-    ## Xs  0.349056245 0.05372259  6.49738315 8.172907e-11
-    ## Xd  0.302361388 0.05617566  5.38242705 7.348816e-08
-    ## Ds -0.314271919 0.09776829 -3.21445660 1.306917e-03
-    ## Dd -0.009106158 0.09229785 -0.09866056 9.214078e-01
-
-``` r
-printsmcure(spmcfit)
-```
-
-    ## Call:
-    ## smcure(formula = Surv(Y, Delta) ~ 1 + Xs + Xd + Ds + Dd, cureform = ~1 + 
-    ##     Xs + Xd + Ds + Dd, data = data, model = "ph", link = "logit", 
-    ##     Var = TRUE)
-    ## 
-    ## Cure probability model:
-    ##               Estimate  Std.Error   Z value     Pr(>|Z|)
-    ## (Intercept)  0.3978187 0.12933041  3.075987 2.098067e-03
-    ## Xs           0.4441501 0.07353542  6.039947 1.541649e-09
-    ## Xd          -0.1800797 0.06819397 -2.640698 8.273534e-03
-    ## Ds          -0.4646626 0.16775771 -2.769843 5.608325e-03
-    ## Dd           0.1566690 0.13840869  1.131931 2.576636e-01
-    ## 
-    ## 
-    ## Failure time distribution model:
-    ##        Estimate  Std.Error     Z value     Pr(>|Z|)
-    ## Xs  0.349056245 0.05372259  6.49738315 8.172907e-11
-    ## Xd  0.302361388 0.05617566  5.38242705 7.348816e-08
-    ## Ds -0.314271919 0.09776829 -3.21445660 1.306917e-03
-    ## Dd -0.009106158 0.09229785 -0.09866056 9.214078e-01
+    ##       Estimate  Std.Error    Z value     Pr(>|Z|)
+    ## Xs  0.37889702 0.05676623  6.6746904 2.477551e-11
+    ## Xd  0.28256341 0.06350916  4.4491757 8.620049e-06
+    ## Ds -0.06397680 0.10533577 -0.6073606 5.436116e-01
+    ## Dd -0.07128201 0.10453556 -0.6818924 4.953070e-01
 
 ``` r
 fit<-REsmcure(Surv(Y,Delta)~1+Xs+Xd+Ds+Dd,cureform=~1+Xs+Xd+Ds+Dd,RE='grp',rho=T, data=data, emmax = 50, eps = 1e-07) 
@@ -345,24 +211,24 @@ print.REsmcure(fit)
     ## 
     ## Cure probability model:
     ##             Estimate Std.Error  Z value Pr(>|Z|)
-    ## (Intercept)  0.09973   0.32672  0.30526  0.76017
-    ## Xs           0.47928   0.07143  6.70997  0.00000
-    ## Xd          -0.17574   0.07210 -2.43732  0.01480
-    ## Ds          -0.45999   0.14111 -3.25986  0.00111
-    ## Dd           0.14420   0.14107  1.02223  0.30667
+    ## (Intercept) -0.20221   0.31341 -0.64520  0.51880
+    ## Xs           0.49767   0.07662  6.49557  0.00000
+    ## Xd          -0.39557   0.07124 -5.55293  0.00000
+    ## Ds          -0.07165   0.14072 -0.50916  0.61064
+    ## Dd           0.35477   0.14159  2.50559  0.01222
     ## 
     ## 
     ## Failure time distribution model:
     ##    Estimate Std.Error  Z value Pr(>|Z|)
-    ## Xs  0.40283   0.04849  8.30730  0.00000
-    ## Xd  0.34978   0.04846  7.21860  0.00000
-    ## Ds -0.38821   0.09493 -4.08965  0.00004
-    ## Dd -0.11702   0.09328 -1.25444  0.20968
+    ## Xs  0.44277   0.05255  8.42629  0.00000
+    ## Xd  0.33932   0.05041  6.73174  0.00000
+    ## Ds -0.13984   0.09208 -1.51870  0.12884
+    ## Dd -0.13665   0.09370 -1.45841  0.14473
     ## 
     ## Random Effects:
     ##                  Variance Correlation
-    ## Cure/Incidence      0.917            
-    ## Survival/Latency    0.960      -0.838
+    ## Cure/Incidence      0.830            
+    ## Survival/Latency    0.782      -0.687
 
 Citations and References
 ------------------------
